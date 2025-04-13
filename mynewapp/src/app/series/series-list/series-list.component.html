@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Series</title>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  />
+  <style>
+    tbody tr {
+        background-color: rgb(230, 230, 230);
+
+    }
+
+    h1 {
+        background-color: #218c9e;
+        font-size: larger;
+        padding: 0.5rem 1rem;
+        
+        
+        
+
+    }
+</style>
+
+</head>
+
+<body>
+    <h1> TV Series</h1>
+    <br>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <table class="table table-striped" id="tabla-series">
+            <thead class="thead-dark">
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Channel</th>
+                <th>Seasons</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let serie of series">
+                <td>{{ serie.id }}</td>
+                <td class="text-primary" style="cursor: pointer;" (click)="serieSeleccionada = serie">{{
+                    serie.name }}</td>
+                <td>{{ serie.channel }}</td>
+                <td>{{ serie.seasons }}</td>
+            </tr>
+            <tr *ngIf="series.length > 0">
+              <td colspan="3"><strong>Average Seasons</strong></td>
+              <td><strong>{{ promedio.toFixed(0) }}</strong></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col-md-4" *ngIf="serieSeleccionada">
+          <div id="detailContainer"></div>
+          <div class="card">
+            <img class="card-img-top" [src]="serieSeleccionada.poster" [alt]="serieSeleccionada.name">
+            <div class="card-body">
+                <h5 class="card-title">{{ serieSeleccionada.name }}</h5>
+                <p class="card-text">{{ serieSeleccionada.description }}</p>
+            </div>
+        </div>
+
+        </div>
+      </div>
+    </div>
+    
+
+</body>
+</html>
